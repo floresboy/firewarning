@@ -10,7 +10,7 @@ npm install
 
 [here](https://www.hivemq.com/blog/mqtt-cli/)
 
-For MQTT CLOI tooling see [here](https://www.hivemq.com/blog/mqtt-cli/)
+For MQTT CLI tooling see [here](https://www.hivemq.com/blog/mqtt-cli/)
 
 ## Start:
 
@@ -27,6 +27,8 @@ here
 ![](assets/20260506_225312_dataflow.jpg)
 
 ## Send fire alarms
+
+For MQTT CLI tooling see [here](https://www.hivemq.com/blog/mqtt-cli/)
 
 ```
 mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m \
