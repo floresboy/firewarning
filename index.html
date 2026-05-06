@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fire Monitor - fawaz</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        body { margin: 0; display: flex; height: 100vh; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
+        #sidebar { width: 320px; background: #2c3e50; color: white; display: flex; flex-direction: column; }
+        #sidebar h2 { padding: 20px; margin: 0; background: #1a252f; font-size: 1.1rem; text-align: center; }
+        #log-list { list-style: none; padding: 0; margin: 0; overflow-y: auto; flex-grow: 1; }
+        
+        .log-item { 
+            padding: 15px; border-bottom: 1px solid #34495e; cursor: pointer; 
+            transition: 0.2s; position: relative;
+        }
+        .log-item:hover { background: #3e5871; }
+        .log-item.fire { border-left: 6px solid #e74c3c; }
+        .log-item.safe { border-left: 6px solid #2ecc71; opacity: 0.7; }
+        
+        .status-badge { font-weight: bold; text-transform: uppercase; font-size: 0.7rem; }
+        .fire .status-badge { color: #e74c3c; }
+        .safe .status-badge { color: #2ecc71; }
+
+        #map { flex-grow: 1; height: 100%; }
+        .hint { font-size: 0.7rem; color: #bdc3c7; margin-top: 5px; display: block; }
+    </style>
+</head>
+<body>
+
+    <div id="sidebar">
+        <h2>🔥 EMERGENCY LOG</h2>
+        <ul id="log-list">
+            <li style="padding: 20px; color: #7f8c8d;">Waiting for MQTT data...</li>
+        </ul>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const map = L.map('map').setView([20, 0], 2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+        const markers = {};
+        const logData = []; 
+        const logListElement = document.getElementById('log-list');
+
+        const fireIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41], iconAnchor: [12, 41]
+        });
+
+        const socket = io();
+
+        // Handle incoming data (from MQTT or UI clicks)
+        socket.on('locationUpdate', (data) => {
+            updateMap(data);
+            updateFIFO(data);
+        });
+
+        function updateMap(data) {
+            const { id, lat, lon, status } = data;
+
+            if (status === 'fire' && lat && lon) {
+                if (markers[id]) {
+                    markers[id].setLatLng([lat, lon]);
+                } else {
+                    markers[id] = L.marker([lat, lon], { icon: fireIcon }).addTo(map)
+                                   .bindPopup(`<b>ID: ${id}</b>`);
+                }
+                map.flyTo([lat, lon], 10);
+            } else if (status === 'safe') {
+                if (markers[id]) {
+                    map.removeLayer(markers[id]);
+                    delete markers[id];
+                }
+            }
+        }
+
+        function updateFIFO(data) {
+            const timestamp = new Date().toLocaleTimeString();
+            // Remove old entry of same ID if exists to avoid clutter
+            const idx = logData.findIndex(i => i.id === data.id);
+            if (idx !== -1) logData.splice(idx, 1);
+
+            logData.unshift({ ...data, time: timestamp });
+            if (logData.length > 10) logData.pop();
+
+            renderList();
+        }
+
+        function renderList() {
+            logListElement.innerHTML = logData.map(item => `
+                <li class="log-item ${item.status}" onclick="setToSafe('${item.id}', '${item.status}')">
+                    <span class="status-badge">${item.status}</span><br>
+                    <strong>ID: ${item.id}</strong><br>
+                    <small>${item.time}</small>
+                    ${item.status === 'fire' ? '<span class="hint">Click to Resolve</span>' : ''}
+                </li>
+            `).join('');
+        }
+
+        function setToSafe(id, currentStatus) {
+            if (currentStatus === 'safe') return;
+            // Send update to server
+            socket.emit('clientUpdateStatus', { id: id, status: 'safe' });
+        }
+    </script>
+</body>
+</html>
