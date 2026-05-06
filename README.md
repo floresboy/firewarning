@@ -2,18 +2,18 @@
 
 ## Install:
 
-
-git clone  https://github.com/floresboy/firewarning.git
+```git clone  https://github.com/floresboy/firewarning.git
 cd firewarning
 npm install
+```
 
 ## Start:
 
-
-npm install
+```npm install
 nodemon server.js
 open http://localhost:3000
-[mqtt](https://www.hivemq.com/blog/mqtt-cli/) sub -h broker.hivemq.com -t fawaz/location/updates -J
+mqtt sub -h broker.hivemq.com -t fawaz/location/updates -J
+```
 
 ## Dataflow
 
