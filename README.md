@@ -8,6 +8,8 @@ cd firewarning
 npm install
 ```
 
+For MQTT CLOI tooling see [here](https://www.hivemq.com/blog/mqtt-cli/)
+
 ## Start:
 
 ```
@@ -47,8 +49,6 @@ mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m
 "status": "fire"
 }'
 ```
-
-
 
 ## Cancel fire alarms
 
