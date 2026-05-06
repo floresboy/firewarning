@@ -2,33 +2,28 @@
 
 ## Install:
 
-```
+
 git clone  https://github.com/floresboy/firewarning.git
 cd firewarning
 npm install
-```
-
 
 ## Start:
 
-```
+
 npm install
 nodemon server.js
-mqtt sub -h broker.hivemq.com -t fawaz/location/updates -J 
 open http://localhost:3000
-```
+[mqtt](https://www.hivemq.com/blog/mqtt-cli/) sub -h broker.hivemq.com -t fawaz/location/updates -J
 
 ## Dataflow
 
-
 ![](assets/20260506_225312_dataflow.jpg)
-
 
 ## Send fire alarms
 
 `mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m  '{ "id": "Kuwait Towers", "lat": 29.3894, "lon": 48.0033, "status": "fire" }'`
 
-mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m 
+mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m
 '{
 "id": "Al Hamra Tower",
 "lat": 29.3781,
@@ -36,7 +31,7 @@ mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m
 "status": "fire"
 }'
 
-mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m 
+mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m
 '{
 "id": "Liberation Tower",
 "lat": 29.3681,
