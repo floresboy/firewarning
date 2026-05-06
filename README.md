@@ -8,6 +8,8 @@ cd firewarning
 npm install
 ```
 
+[here](https://www.hivemq.com/blog/mqtt-cli/)
+
 For MQTT CLOI tooling see [here](https://www.hivemq.com/blog/mqtt-cli/)
 
 ## Start:
@@ -17,6 +19,8 @@ nodemon server.js
 open http://localhost:3000
 mqtt sub -h broker.hivemq.com -t fawaz/location/updates -J
 ```
+
+here
 
 ## Dataflow
 
