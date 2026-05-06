@@ -52,7 +52,12 @@ mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m
 ## Cancel fire alarms
 
 ```
-mqtt pub -h broker.hivemq.com -t fawaz/location/updates \
--m  '{ "id": "Avenues Mall", "lat": 29.3039, "lon": 47.9351, "status": "save" }
+mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m
+'{
+"id": "Avenues Mall",
+"lat": 29.3039,
+"lon": 47.9351,
+"status": "safe"
+}'
 ```
 
