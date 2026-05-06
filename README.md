@@ -9,7 +9,7 @@ npm install
 
 ## Start:
 
-```npm install
+```
 nodemon server.js
 open http://localhost:3000
 mqtt sub -h broker.hivemq.com -t fawaz/location/updates -J
@@ -21,8 +21,7 @@ mqtt sub -h broker.hivemq.com -t fawaz/location/updates -J
 
 ## Send fire alarms
 
-`mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m  '{ "id": "Kuwait Towers", "lat": 29.3894, "lon": 48.0033, "status": "fire" }'`
-
+```
 mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m
 '{
 "id": "Al Hamra Tower",
@@ -46,6 +45,9 @@ mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m
 "lon": 47.9351,
 "status": "fire"
 }'
+```
+
+
 
 ## Cancel fire alarms
 
