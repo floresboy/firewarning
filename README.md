@@ -3,10 +3,17 @@
 ## start:
 
 ```
+npm install
 nodemon server.js
 mqtt sub -h broker.hivemq.com -t fawaz/location/updates -J 
 open http://localhost:3000
 ```
+
+## Dataflow
+
+
+
+![](assets/20260506_225312_dataflow.jpg)
 
 
 ## Send fire alarms
