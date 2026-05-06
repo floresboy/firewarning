@@ -2,7 +2,8 @@
 
 ## Install:
 
-```git clone  https://github.com/floresboy/firewarning.git
+```
+git clone  https://github.com/floresboy/firewarning.git
 cd firewarning
 npm install
 ```
