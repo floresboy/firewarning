@@ -1,6 +1,15 @@
 # firewarning
 
-## start:
+## Install:
+
+```
+git clone  https://github.com/floresboy/firewarning.git
+cd firewarning
+npm install
+```
+
+
+## Start:
 
 ```
 npm install
@@ -10,7 +19,6 @@ open http://localhost:3000
 ```
 
 ## Dataflow
-
 
 
 ![](assets/20260506_225312_dataflow.jpg)
