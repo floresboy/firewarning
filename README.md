@@ -25,7 +25,7 @@ mqtt sub -h broker.hivemq.com -t fawaz/location/updates -J
 ## Send fire alarms
 
 ```
-mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m
+mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m \
 '{
 "id": "Al Hamra Tower",
 "lat": 29.3781,
@@ -33,7 +33,7 @@ mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m
 "status": "fire"
 }'
 
-mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m
+mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m \
 '{
 "id": "Liberation Tower",
 "lat": 29.3681,
@@ -41,7 +41,7 @@ mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m
 "status": "fire"
 }'
 
-mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m
+mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m \
 '{
 "id": "Avenues Mall",
 "lat": 29.3039,
@@ -53,7 +53,7 @@ mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m
 ## Cancel fire alarms
 
 ```
-mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m
+mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m \
 '{
 "id": "Avenues Mall",
 "lat": 29.3039,
