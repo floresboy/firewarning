@@ -4,6 +4,10 @@ This is a lightweight technology demonstrator consisting of a JS web server that
 
 You can use docker or install it on your local machine. "Start" fires by sending the appropriate MQTT messages.
 
+## Live
+
+A live instance can be found [here](http://143.47.179.65:3000/)
+
 ## Docker
 
 ```
@@ -83,8 +87,6 @@ mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m \
 ```
 
 ## Webview
-
-
 
 ![](assets/20260507_180037_kuwait-on-fire.png)
 
