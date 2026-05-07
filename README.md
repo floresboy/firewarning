@@ -1,8 +1,8 @@
-# firewarning
+# Firewarning
 
 This is a lightweight technology demonstrator consisting of a JS web server that hosts a map-based webpage displaying fire alarms received through an MQTT subscription. Alarms can be triggered by publishing MQTT messages to the public broker broker.hivemq.com, which is used for message transport.
 
-You can use docker or install it on your local machine.
+You can use docker or install it on your local machine. "Start" fires by sending the appropriate MQTT messages.
 
 
 ## Docker
