@@ -84,10 +84,7 @@ mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m \
 
 ## Webview
 
-sds
 
 
-![](assets/20260507_175847_Scherm_afbeelding 2026-05-07 om 17.54.23.png)
-
-ss
+![](assets/20260507_180037_kuwait-on-fire.png)
 
