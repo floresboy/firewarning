@@ -4,8 +4,8 @@ This is a lightweight technology demonstrator consisting of a JS web server that
 
 You can use docker or install it on your local machine. "Start" fires by sending the appropriate MQTT messages.
 
-
 ## Docker
+
 ```
 docker run --name firewarning-container -p 3000:3000 kamielstraatman/firewarning-app:latest
 ```
@@ -27,7 +27,6 @@ nodemon server.js
 open http://localhost:3000
 mqtt sub -h broker.hivemq.com -t fawaz/location/updates -J
 ```
-
 
 ## Dataflow
 
@@ -82,4 +81,13 @@ mqtt pub -h broker.hivemq.com -t fawaz/location/updates -m \
 "status": "safe"
 }'
 ```
+
+## Webview
+
+sds
+
+
+![](assets/20260507_175847_Scherm_afbeelding 2026-05-07 om 17.54.23.png)
+
+ss
 
